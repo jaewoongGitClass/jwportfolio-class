@@ -9,4 +9,4 @@ Update Date: 2026.10.09
 Update Date: 2026.10.12
         message: upgrade to clikable and see detail information
 
-        purpose: for git branch a lecture note
+        purpose: for git branch lecture note
