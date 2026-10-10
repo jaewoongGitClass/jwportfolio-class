@@ -1,3 +1,7 @@
 “Change font style in html file”
 
-Change Date: 2026.09.28
+
+Update Date: 2026.10.09
+        message: test for git add -p option
+
+        purpose: making a lecture note
