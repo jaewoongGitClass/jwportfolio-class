@@ -7,7 +7,7 @@
   <title>JW.Chung | Product Designer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
@@ -57,7 +57,7 @@
           <p class="section-intro">좋은 결과는 좋은 질문에서<br>시작된다고 믿습니다.</p>
         </div>
         <div class="project-grid">
-          <article class="project-card project-card--coral reveal">
+          <article class="project-card project-card--coral reveal" tabindex="0" role="button" aria-haspopup="dialog" aria-controls="project-dialog" aria-label="Lumio 프로젝트 상세 보기" data-project="lumio">
             <div class="project-art art-lumio">
               <div class="art-topline"><span>LUMIO</span><span>2024</span></div>
               <div class="phone phone-back"></div>
@@ -69,7 +69,7 @@
             </div>
             <p>흩어진 건강 데이터를 하나의 일상 루틴으로 연결한 모바일 경험</p>
           </article>
-          <article class="project-card project-card--blue reveal">
+          <article class="project-card project-card--blue reveal" tabindex="0" role="button" aria-haspopup="dialog" aria-controls="project-dialog" aria-label="Mori 프로젝트 상세 보기" data-project="mori">
             <div class="project-art art-mori">
               <div class="art-topline"><span>MORI</span><span>2023</span></div>
               <div class="mori-window"><span>mori</span><b>일상의 취향을<br>발견하는 방법</b><small>Explore collection&nbsp; →</small></div>
@@ -81,7 +81,7 @@
             </div>
             <p>취향 기반 큐레이션으로 쇼핑의 발견하는 재미를 다시 설계</p>
           </article>
-          <article class="project-card project-card--yellow reveal">
+          <article class="project-card project-card--yellow reveal" tabindex="0" role="button" aria-haspopup="dialog" aria-controls="project-dialog" aria-label="Ondo Studio 프로젝트 상세 보기" data-project="ondo">
             <div class="project-art art-ondo">
               <div class="art-topline"><span>ONDO</span><span>2022</span></div>
               <div class="ondo-copy"><span>ondo studio</span><b>Objects<br>with a story.</b><small>View product</small></div>
@@ -115,6 +115,31 @@
       <div class="footer-links"><a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://www.behance.net" target="_blank" rel="noreferrer">Behance</a><a href="#top">Back to top ↑</a></div>
     </footer>
   </div>
+  <dialog class="project-dialog" id="project-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description">
+    <div class="dialog-content">
+      <div class="dialog-heading">
+        <p class="eyebrow">PROJECT DETAILS</p>
+        <button class="dialog-close" type="button" aria-label="프로젝트 상세 닫기">×</button>
+      </div>
+      <p class="sample-notice">샘플 콘텐츠 · 실제 프로젝트 정보에 맞게 수정해 주세요.</p>
+      <h2 class="dialog-title" id="dialog-title"></h2>
+      <p class="dialog-description" id="dialog-description"></p>
+      <dl class="dialog-details">
+        <div>
+          <dt>내 역할</dt>
+          <dd id="dialog-role"></dd>
+        </div>
+        <div>
+          <dt>사용 기술</dt>
+          <dd><ul class="technology-list" id="dialog-technologies"></ul></dd>
+        </div>
+        <div>
+          <dt>프로젝트 성과</dt>
+          <dd id="dialog-outcome"></dd>
+        </div>
+      </dl>
+    </div>
+  </dialog>
   <div class="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
