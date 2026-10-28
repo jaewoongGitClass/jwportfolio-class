@@ -2,6 +2,7 @@ const menuButton = document.querySelector(".menu-toggle");
 const mainNav = document.querySelector(".main-nav");
 const toast = document.querySelector(".toast");
 const copyButton = document.querySelector(".copy-email");
+const contactForm = document.querySelector("#contact-form");
 const projectDialog = document.querySelector("#project-dialog");
 const dialogCloseButton = document.querySelector(".dialog-close");
 const projectCards = document.querySelectorAll(".project-card[data-project]");
@@ -77,6 +78,54 @@ if (copyButton && toast) {
     toast.textContent = "이메일 주소를 복사했어요.";
     toast.classList.add("is-visible");
     window.setTimeout(() => toast.classList.remove("is-visible"), 2200);
+  });
+}
+
+if (contactForm) {
+  const nameInput = contactForm.querySelector("#contact-name");
+  const emailInput = contactForm.querySelector("#contact-email");
+  const messageInput = contactForm.querySelector("#contact-message");
+  const status = contactForm.querySelector("#contact-form-status");
+  const fields = [nameInput, emailInput, messageInput];
+
+  function clearFieldError(field) {
+    field.removeAttribute("aria-invalid");
+    contactForm.querySelector(`#${field.id}-error`).textContent = "";
+  }
+
+  function showFieldError(field, message) {
+    field.setAttribute("aria-invalid", "true");
+    contactForm.querySelector(`#${field.id}-error`).textContent = message;
+  }
+
+  contactForm.addEventListener("input", (event) => {
+    const field = event.target;
+    if (!fields.includes(field)) return;
+    clearFieldError(field);
+    status.textContent = "";
+  });
+
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    status.textContent = "";
+
+    fields.forEach(clearFieldError);
+
+    if (!nameInput.value.trim()) showFieldError(nameInput, "이름을 입력해 주세요.");
+    if (!emailInput.value.trim()) {
+      showFieldError(emailInput, "이메일 주소를 입력해 주세요.");
+    } else if (!emailInput.checkValidity()) {
+      showFieldError(emailInput, "올바른 이메일 주소를 입력해 주세요.");
+    }
+    if (!messageInput.value.trim()) showFieldError(messageInput, "메시지를 입력해 주세요.");
+
+    const firstInvalidField = fields.find((field) => field.getAttribute("aria-invalid") === "true");
+    if (firstInvalidField) {
+      firstInvalidField.focus();
+      return;
+    }
+
+    status.textContent = "입력값 검증이 완료되었습니다.";
   });
 }
 
