@@ -6,6 +6,41 @@ const contactForm = document.querySelector("#contact-form");
 const projectDialog = document.querySelector("#project-dialog");
 const dialogCloseButton = document.querySelector(".dialog-close");
 const projectCards = document.querySelectorAll(".project-card[data-project]");
+const themeToggle = document.querySelector(".theme-toggle");
+const themeStorageKey = "jwportfolio-theme";
+let savedTheme = null;
+
+try {
+  savedTheme = localStorage.getItem(themeStorageKey);
+} catch (error) {
+  console.warn("Could not read the saved color theme.", error);
+}
+
+function applyTheme(theme) {
+  const isDark = theme === "dark";
+  document.documentElement.dataset.theme = isDark ? "dark" : "light";
+
+  if (themeToggle) {
+    themeToggle.setAttribute("aria-pressed", String(isDark));
+    themeToggle.setAttribute("aria-label", `Enable ${isDark ? "light" : "dark"} mode`);
+    themeToggle.querySelector(".theme-toggle-label").textContent = `${isDark ? "Light" : "Dark"} mode`;
+  }
+}
+
+applyTheme(savedTheme === "dark" ? "dark" : "light");
+
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    applyTheme(nextTheme);
+
+    try {
+      localStorage.setItem(themeStorageKey, nextTheme);
+    } catch (error) {
+      console.warn("Could not save the selected color theme.", error);
+    }
+  });
+}
 
 const projectDetails = {
   lumio: {
